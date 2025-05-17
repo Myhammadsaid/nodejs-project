@@ -6,6 +6,21 @@ let todos = [] // Здесь будем хранить задачи в памя�
 let nextId = 1
 
 const server = http.createServer((req, res) => {
+	// Добавляем CORS заголовки в ответ, чтобы разрешить доступ с любого источника
+	res.setHeader('Access-Control-Allow-Origin', '*') // или конкретный источник вместо '*'
+	res.setHeader(
+		'Access-Control-Allow-Methods',
+		'GET, POST, PUT, DELETE, OPTIONS'
+	)
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+
+	// Если запрос OPTIONS (предварительный CORS запрос), отвечаем сразу
+	if (req.method === 'OPTIONS') {
+		res.writeHead(204)
+		res.end()
+		return
+	}
+
 	const { method, url } = req
 
 	// Разбираем URL и параметры (для простоты без query-парсера)

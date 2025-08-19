@@ -42,6 +42,15 @@ const server = http.createServer((req, res) => {
 		// Получить все задачи
 		res.writeHead(200)
 		res.end(JSON.stringify(todos))
+	} else if (method === 'GET' && id !== null) {
+		const todo = todos.find(i => i.id === id)
+		if (!todo) {
+			res.writeHead(404)
+			res.end(JSON.stringify({ error: 'Маршрут не найден' }))
+			return
+		}
+		res.writeHead(200)
+		res.end(JSON.stringify(todo))
 	} else if (method === 'POST' && id === null) {
 		// Добавить новую задачу
 		let body = ''

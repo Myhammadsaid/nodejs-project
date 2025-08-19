@@ -4,7 +4,9 @@
 	"description": "ulbi tv channel",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon index.js"
+		"start": "nodemon index.js",
+		"cross": "cross-env PORT=5000 node ./lessons/process.js",
+		"example": "nodemon example.js"
 	},
 	"author": "",
 	"license": "ISC",

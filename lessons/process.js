@@ -11,41 +11,15 @@ console.log('Arguments:', process.argv)
 console.log('Текущая рабочая директория:', process.cwd())
 // Текущая рабочая директория
 
-console.log('Использование памяти:', process.memoryUsage())
-// Использование памяти
-
 console.log('ID процесса:', process.pid)
 // ID процесса
-
-// Вывод в stdout без переноса строки
-process.stdout.write('>> Введите что-нибудь: ')
-
-// Считывание из stdin
-process.stdin.on('data', data => {
-	console.log('Вы ввели:', data.toString().trim())
-	process.exit(0)
-})
-
-// nextTick — отложенный вызов
-process.nextTick(() => {
-	console.log('Этот текст выводится через process.nextTick()')
-})
 
 // Обработка выхода
 process.on('exit', code => {
 	console.log(`Процесс завершён с кодом: ${code}`)
 })
 
-// Обработка SIGINT (Ctrl+C)
-process.on('SIGINT', () => {
-	console.log('\nПолучен SIGINT (Ctrl+C). Завершаем процесс...')
-	process.exit()
-})
-
 // Задача
-
-const dotenv = require('dotenv')
-dotenv.config()
 
 let name = process.env.DEFAULT_NAME
 let lang = process.env.DEFAULT_LANG

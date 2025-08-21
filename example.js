@@ -1,378 +1,408 @@
 const path = require('path')
-const dotenv = require('dotenv')
-const fs = require('fs')
-dotenv.config()
+const filePath = '/home/alex/Projects/node-course/files/report.pdf'
 
-// console.log(process.pid)
+// console.log(path.basename(filePath))
+// console.log(path.dirname(filePath))
+// console.log(path.extname(filePath))
+// console.log(path.join(__dirname, 'index.js'))
+// console.log(path.join(__filename, 'index.js'))
+// console.log(path.resolve(__dirname, 'start', 'index.js'))
+// console.log(path.resolve(__filename, 'start', 'index.js'))
 
-// const str = process.argv.slice(2)
-// console.log(str)
-
-// console.log(path.join(__dirname, 'sayt', 'yaratiw', 'uz'))
-// console.log(path.join(__filename, 'sayt', 'yaratiw', 'uz'))
-
-// const fullPath = path.resolve(__dirname, 'first', 'second', 'third.js')
-// console.log(path.parse(fullPath))
-
-// const siteURL = 'http://localhost:5000/users?id=4'
-// const url = new URL(siteURL)
-// console.log(url)
-
-// const PORT = process.env.PORT
-// const SERVER_HOST = process.env.SERVER_HOST
-// const STATIC_DIR = process.env.STATIC_DIR
-
-// const FULL_URL = `http://${SERVER_HOST}:${PORT}/${STATIC_DIR}/index.html`
-// const FULL_PATH = path.resolve(__dirname, STATIC_DIR, 'index.html')
-// const NEW_URL = new URL(FULL_URL)
-// const NEW_PATH = path.parse(FULL_PATH)
-// const PID = process.pid
-// const ARGV = process.argv.slice(2)
-
-// const UBJECT = {
-// 	PID: PID,
-// 	Arguments: ARGV,
-// 	Server_URL: NEW_URL,
-// 	Path_Info: NEW_PATH,
+// const pathUser = {
+// 	basename: path.basename(filePath),
+// 	extname: path.extname(filePath),
+// 	dirname: path.dirname(filePath),
+// 	resolve: path.resolve(path.dirname(filePath), '../../logs/error.log'),
 // }
 
-// console.log(UBJECT)
+// console.log(pathUser)
 
-// fs.mkdirSync(path.resolve(__dirname, 'dir'))
+// const pathDemo = process.argv[2]
 
-// fs.mkdirSync(path.resolve(__dirname, 'dir1', 'dir2', 'dir3'), {
-// 	recursive: true,
+// if (pathDemo === '--help' || !pathDemo) {
+// 	console.log(`Использование:
+//   node path-demo.js <путь_к_файлу>
+
+// Описание:
+//   Этот скрипт разбирает путь к файлу, выводит его имя, расширение и папку.
+//   Затем формирует новый путь к резервной копии с расширением .bak
+
+// Пример:
+//   node path-demo.js /home/user/data/info.txt
+// `)
+// 	process.exit(0)
+// }
+
+// let parsed = path.parse(pathDemo)
+
+// console.log(`
+// Имя файла: ${parsed.base}
+// Расширение: ${parsed.ext}
+// Родительская папка: ${parsed.dir}
+// Путь к резервной копии: ${path.join(parsed.dir, parsed.name + '.bak')}
+// `)
+
+const myURL = new URL(
+	'https://example.com:8080/path/page.html?user=alex&age=30#bio'
+)
+
+// console.log(myURL)
+// console.log(myURL.host)
+
+// for (const [key, value] of myURL.searchParams) {
+// 	console.log(key, value)
+// }
+
+// получить значение:
+// console.log(myURL.searchParams.get('user'))
+// добавить параметр:
+// myURL.searchParams.append('token', '123')
+// console.log(myURL)
+// удалить параметр:
+// myURL.searchParams.delete('age')
+// console.log(myURL)
+// проверить наличие:
+// console.log(myURL.searchParams.has('user'))
+
+// const url = new URL(
+// 	'https://github.com/user123/project?sort=stars&lang=javascript#readme'
+// )
+
+// url.searchParams.set('sort', 'updated')
+
+// console.log(
+// 	`
+// 	Protocol: ${url.protocol}
+// 	Domen: ${url.hostname}
+// 	Path: ${url.pathname}
+// 	Search: ${url.search}
+// 	Hash: ${url.hash ? url.hash : 'Хеша нету в ссылке'}
+// 	Lang: ${url.searchParams.get('lang')}
+// 	`
+// )
+
+// console.log('Full path: ', url.href)
+
+// const url = new URL(
+// 	'https://api.example.com/v1/users?page=5&limit=20&token=abc123'
+// )
+
+// url.searchParams.append('sort', 'desc')
+// url.searchParams.delete('token')
+
+// console.log(
+// 	`
+// 	Protocol: ${url.protocol}
+// 	Domen: ${url.hostname}
+// 	Path: ${url.pathname}
+// 	Query: ${url.search}
+// 	Page: ${url.searchParams.get('page')}
+// 	`
+// )
+
+// console.log('FullPath: ', url.href)
+
+const fs = require('fs')
+
+// fs.writeFile('notes/foo.txt', 'Test for writeFile --> fs', err => {
+// 	if (err) throw err
+// 	console.log('Файл создан или перезаписан')
 // })
 
-// fs.mkdir(path.resolve(__dirname, 'dir'), err => {
-// 	if (err) {
-// 		console.log(err)
-// 		return
-// 	}
+// fs.readFile('notes/foo.txt', 'utf-8', (err, data) => {
+// 	if (err) throw err
+// 	console.log('Файл содержит в себе: ', data)
+// })
+
+// let text = '\nbla bla bla...'
+
+// fs.appendFile('notes/foo.txt', text, err => {
+// 	if (err) throw err
+// 	console.log('В файл был записан текст: ', text)
+// })
+
+// for (let i = 0; i < 100; i++) {
+// 	fs.appendFile('notes/foo.txt', '\nbla bla bla...', err => {
+// 		if (err) throw err
+// 	})
+// }
+
+// fs.unlink('notes/foo.txt', err => {
+// 	if (err) throw err
+// 	console.log('Файл был удален')
+// })
+
+// fs.mkdir('example', err => {
+// 	if (err) throw err
 // 	console.log('Папка создан')
 // })
 
-// fs.rmdir(path.resolve(__dirname, 'dir'), err => {
-// 	if (err) {
-// 		console.log(err)
-// 		return
-// 	}
-// 	console.log('Папка удалена')
+// fs.readdir('notes', (err, list) => {
+// 	if (err) throw err
+// 	console.log('Список файлов:')
+// 	list?.forEach(file => {
+// 		console.log(`--${file}`)
+// 	})
 // })
 
-// fs.writeFile(
-// 	path.resolve(__dirname, 'test.txt'),
-// 	'sdasdas asd 123 \n sad',
-// 	err => {
-// 		if (err) {
-// 			console.log(err)
+// fs.rmdir('example', err => {
+// 	if (err) throw err
+// 	console.log('Папка был удален')
+// })
+
+// fs.mkdir('test', err => {
+// 	if (err) {
+// 		console.log('Такой папка существует')
+// 	} else {
+// 		console.log('Папка создан')
+// 	}
+// })
+
+// let text = 'foo, this is a test file!'
+// fs.writeFile('test/message.txt', text, err => {
+// 	if (err) throw err
+// 	let append = '\nThis line was appended.'
+// 	fs.appendFile('test/message.txt', append, err => {
+// 		if (err) throw err
+// 		fs.readFile('test/message.txt', 'utf-8', (err, data) => {
+// 			if (err) throw err
+// 			console.log('Содержимый файла:\n', data)
+// 			console.log('Длина текста', data.toString().length)
+// 		})
+// 	})
+// })
+
+// fs.readdir('test', (err, list) => {
+// 	if (err) throw err
+// 	let count1 = 0
+// 	let count2 = 0
+// 	list?.forEach(file => {
+// 		if (path.extname(file) === '.txt') {
+// 			count1++
+// 			console.log(`-- ${file}`)
+// 		} else {
+// 			count2++
+// 		}
+// 	})
+// 	console.log('Всего .txt файлов:', count1)
+// 	console.log('Всего не .txt файлов:', count2)
+// })
+
+// const os = require('os')
+
+// console.log(os.platform())
+// console.log(os.arch())
+// console.log(os.hostname())
+// console.log(os.type())
+// const cpus = os.cpus()
+
+// cpus.forEach((cpus, index) => {
+// 	console.log(`Ядро ${index + 1}: ${cpus.model} - ${cpus.speed}`)
+// })
+
+// console.log(`Количество ядер: ${cpus.length}`)
+
+// let argvs = process.argv.slice(2)
+
+// let text = `Использование:
+//   node url-demo.js <url> [--add-param=ключ=значение]
+
+// Описание:
+//   Скрипт разбирает URL, показывает его части и query-параметры.
+//   Можно добавить новый query-параметр через --add-param.
+
+// Пример:
+//   node url-demo.js "https://example.com/page?user=alex" --add-param=lang=ru`
+
+// if (!argvs.length || argvs[0] === '--help') {
+// 	console.log(text)
+// 	process.exit(0)
+// }
+
+// let url = new URL(argvs[0])
+// argvs.slice(1)?.forEach(item => {
+// 	if (item.startsWith('--add-param=')) {
+// 		let key = item.split('=')[1]
+// 		let value = item.split('=')[2]
+// 		url.searchParams.append(key, value)
+// 	} else {
+// 		console.log(text)
+// 		process.exit(0)
+// 	}
+// })
+
+// console.log(
+// 	`
+// 		Protocol: ${url.protocol}
+// 	 	Domen: ${url.hostname}
+// 	 	Port: ${url.port}
+//  		Path: ${url.pathname}
+//  		Hash: ${url.hash ? url.hash : 'Хеш нету в ссылке'}
+//  		Query: ${url.search}
+// 		`
+// )
+
+// 🔹 Часть 2 — Дополнительное упражнение с аргументами
+// const args = [
+// 	'--env=production',
+// 	'--config=db.json',
+// 	'--verbose',
+// 	'--config=server.json',
+// 	'--mode=dev',
+// ]
+// const result = []
+// args.forEach(item => {
+// 	if (item.startsWith('--config=')) {
+// 		result.push(item.split('=')[1])
+// 	}
+// })
+// console.log(result)
+
+const Emitter = require('events')
+const emitter = new Emitter()
+
+// function isName(name = 'World!') {
+// 	console.log(`Hello, ${name}`)
+// }
+
+// emitter.on('listener', isName)
+// // emitter.off('listener', isName) // снять слушателя.
+// emitter.emit('listener', 'Mike')
+
+// emitter.once('foo', isName)
+// emitter.emit('foo') // сработает
+// emitter.emit('foo') // не сработает
+
+// // emitter.removeListener('listener', isName) // старое имя (работает аналогично).
+// emitter.emit('listener', 'Mike')
+
+// emitter.on('name', isName)
+
+// // emitter.removeAllListeners(['name'])
+// emitter.emit('listener', 'Mike')
+// emitter.emit('name', 'John')
+
+// console.log(emitter.listenerCount('listener'))
+// console.log(emitter.eventNames())
+// console.log(emitter.listeners('name'))
+
+// emitter.on('ping', () => console.log('pong'))
+// emitter.emit('ping')
+
+// emitter.on('sum', (a, b) => console.log(a + b))
+// emitter.emit('sum', 4, 5)
+
+// emitter.on('hello', name => console.log(`Hello, ${name}`))
+// emitter.emit('hello', 'Алекс')
+
+// emitter.once('login', user => console.log(`${user} вошёл в систему`))
+// emitter.emit('login', 'john')
+// // emitter.emit('login', 'john')
+
+// emitter.on('data', str => console.log(`длина: ${str.length}`))
+// emitter.on('data', str => console.log(str.toUpperCase()))
+// emitter.emit('data', 'nodejs')
+
+// function removeListener(arr) {
+// 	let inx = arr?.indexOf('data')
+// 	if (inx !== -1) {
+// 		const listeners = emitter.listeners(arr[inx])
+// 		for (const fn of listeners) {
+// 			emitter.off(arr[inx], fn)
+// 		}
+// 	}
+// }
+// emitter.on('off', removeListener)
+// emitter.emit('off', emitter.eventNames())
+
+// let count = 0
+// function message(str) {
+// 	if (str) {
+// 		count++
+// 		if (count > 4) {
+// 			console.log('\nЛимит сообщение истек!')
 // 			return
 // 		}
-// 		console.log('Файл создан')
+// 		console.log(`📩 Пользователь написал: ${str}`)
+// 		console.log(`Всего сообщений: ${count}`)
+// 	} else {
+// 		console.log('Напишите сообщение')
 // 	}
-// )
-
-// fs.appendFile(
-// 	path.resolve(__dirname, 'test.txt'),
-// 	'sdasdas asd 123 \n sad',
-// 	err => {
-// 		if (err) {
-// 			console.log(err)
-// 			return
-// 		}
-// 		console.log('Файл обновлен')
-// 	}
-// )
-
-const asyncWriteFile = async (path, data) => {
-	return new Promise((resolve, reject) =>
-		fs.writeFile(path, data, err => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-const asyncAppendFile = async (path, data) => {
-	return new Promise((resolve, reject) =>
-		fs.appendFile(path, data, err => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-const asyncReadFile = path => {
-	return new Promise((resolve, reject) =>
-		fs.readFile(path, { encoding: 'utf-8' }, (err, data) => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve(data)
-		})
-	)
-}
-
-const asyncRemoveFile = path => {
-	return new Promise((resolve, reject) =>
-		fs.rm(path, err => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-// asyncWriteFile(path.resolve(__dirname, 'text.txt'), 'data')
-// 	.then(() => asyncAppendFile(path.resolve(__dirname, 'text.txt'), '123'))
-// 	.then(() => asyncAppendFile(path.resolve(__dirname, 'text.txt'), '345'))
-// 	.then(() => asyncAppendFile(path.resolve(__dirname, 'text.txt'), '678'))
-// 	.then(() => asyncReadFile(path.resolve(__dirname, 'text.txt')))
-// 	.then(data => console.log(data))
-// 	.catch(err => console.log(err))
-
-// asyncRemoveFile(path.resolve(__dirname, 'text.txt')).then(() =>
-// 	console.log('Файл удален')
-// )
-
-const text = process.env.TEXT || process.argv.slice(2).join(' ')
-
-const writeFile = (path, data) => {
-	return new Promise((resolve, reject) =>
-		fs.writeFile(path, data, err => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-const readFile = path => {
-	return new Promise((resolve, reject) =>
-		fs.readFile(path, { encoding: 'utf-8' }, (err, data) => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve(`Кол-во слов ${data.split(' ').length}`)
-		})
-	)
-}
-
-const newFile = (path, data) => {
-	return new Promise((resolve, reject) =>
-		fs.writeFile(path, data, err => {
-			if (err) {
-				return reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-const removeFile = path => {
-	return new Promise((resolve, reject) =>
-		fs.rm(path, err => {
-			if (err) {
-				reject(err.message)
-			}
-			resolve()
-		})
-	)
-}
-
-// writeFile(path.resolve(__dirname, 'example.txt'), text)
-// 	.then(() => readFile(path.resolve(__dirname, 'example.txt')))
-// 	.then(data => newFile(path.resolve(__dirname, 'count.txt'), data))
-// 	.then(() => removeFile(path.resolve(__dirname, 'example.txt')))
-// 	.catch(err => console.log(err))
-
-const os = require('os')
-
-// const cpus = os.cpus().length
-
-// for (let i = 0; i < cpus.length - 2; i++) {
-// 	const CPUcore = cpus[i]
-// 	console.log('Запустить еще один nodejs процесс')
 // }
 
-// console.log(process.pid)
+// emitter.on('message', message)
+// emitter.emit('message', 'Привет')
+// emitter.emit('message', 'Как дела?')
+// emitter.emit('message', 'Всё хорошо')
+// emitter.emit('message', 'bla bla bla...')
+// emitter.emit('message', 'bla bla bla...')
+// emitter.removeAllListeners('message')
+// emitter.emit('message', 'Всё хорошо')
 
-// const Emitter = require('events')
-// const { resolveObjectURL } = require('buffer')
+// const readable = fs.createReadStream('./test/message.txt', {
+// 	encoding: 'utf-8',
+// highWaterMark: 16 // размер буфера (по 16 байт)
+// })
 
-// const emitter = new Emitter()
-
-// const MESSAGE = process.env.MESSAGE || ''
-
-// const callback = (first, second, third) => {
-// 	console.log('Вы присалали сообщение ' + first)
-// 	console.log('Второй аргумент ' + second)
-// }
-
-// emitter.once('senpai', callback)
-
-// emitter.on('senpai', callback)
-// emitter.on('senpai', callback)
-// emitter.on('senpai', callback)
-
-// emitter.removeListener('senpai', callback)
-
-// if (MESSAGE) {
-// 	emitter.emit('senpai', MESSAGE, 1234)
-// } else {
-// 	emitter.emit('senpai', 'Вы не указали сообщение.')
-// }
-
-{
-	/*************************************/
-}
-
-// const stream = fs.createReadStream(path.resolve(__dirname, 'list.txt'))
-// const stream = fs.createReadStream(path.resolve(__dirname, 'list.txt'), {encoding: 'utf-8'})
-
-// stream.on('data', chunk => {
+// readable.on('data', chunk => {
 // 	console.log(chunk)
 // })
 
-// stream.on('close', () => console.log('Закончили читать'))
-// stream.on('open', () => console.log('Начали читать'))
-// stream.on('error', err => console.log(err))
+// readable.on('end', () => console.log('\nЧтения завершено'))
 
-{
-	/*************************************/
-}
+// const writable = fs.createWriteStream('./test/foo.txt')
+// writable.write('Первая строка\n')
+// writable.write('Вторая строка\n')
+// writable.end('👉 Запись завершена\n')
 
-// const writableStream = fs.createWriteStream(
-// 	path.resolve(__dirname, 'list2.txt')
-// )
+// const copy = fs.createWriteStream('./test/package.txt')
+// readable.pipe(copy)
 
-// for (let i = 0; i < 20; i++) {
-// 	writableStream.write(i + '\n')
-// }
-// writableStream.end()
-
-{
-	/***************************************************************** */
-}
-
-// const test = () => {
-// 	console.log('Hello, World!')
-// }
-
-// emitter.once('test', test)
-// emitter.emit('test', test)
-
-// const argv = process.argv[2]
-// const paths = path.resolve(__dirname, 'file', 'text.txt')
-// const url = new URL(argv)
-
-// console.log(path.parse(paths))
-// console.log(url)
-
-// const dir = path.resolve(__dirname, 'lessons')
-
-// fs.readdir(dir, (err, files) => {
-// 	if (err) {
-// 		console.log(err)
-// 		return
-// 	}
-// 	let count = 0
-// 	files.forEach(item => {
-// 		if (path.extname(item) === '.txt') {
-// 			count++
-// 		}
+// for (let i = 0; i < 10; i++) {
+// 	fs.appendFile('./test/input.txt', 'datadatadatadata\n', err => {
+// 		if (err) throw err
 // 	})
-// 	console.log(count)
+// }
+
+// const inputfile = fs.createReadStream('./test/input.txt', {
+// 	encoding: 'utf-8',
 // })
 
-// const ReadFolder = dir => {
-// 	return new Promise((resolve, reject) =>
-// 		fs.readdir(dir, (err, files) => {
-// 			if (err) {
-// 				return reject(err.message)
+// inputfile.on('data', chunk => {
+// 	if (chunk.length) {
+// 		console.log(chunk)
+// 		console.log(`Количество строк в файле: ${chunk.length}`)
+// 	} else {
+// 		console.log('Файл пуст')
+// 		process.exit(0)
+// 	}
+// })
+
+// inputfile.on('end', () => console.log('\nЧтения завершено'))
+
+// const copyfile = fs.createWriteStream('./test/output.txt')
+
+// inputfile.pipe(copyfile)
+
+// const lengthFile = fs.createReadStream('./test/input.txt', {
+// 	encoding: 'utf-8',
+// })
+
+// const appendFIle = fs.createWriteStream('./test/output.txt')
+
+// lengthFile.on('data', chunk => {
+// 	if (chunk.length) {
+// 		let num = 0
+// 		let chunks = chunk.split('\n')
+// 		chunks.forEach(item => {
+// 			if (item) {
+// 				num++
+// 				appendFIle.write(`${num}: ${item}\n`)
 // 			}
-// 			let count = 0
-// 			files.forEach(item => {
-// 				if (path.extname(item) === '.txt') {
-// 					count++
-// 				}
-// 			})
-// 			resolve(count)
 // 		})
-// 	)
-// }
-
-// ReadFolder(path.resolve(__dirname, 'lessons')).then(result =>
-// 	console.log(result)
-// )
-
-// const cpus = os.cpus().length
-// const all__memory = (os.totalmem() / 1024 / 1024).toFixed(2)
-// const free__memory = (os.freemem() / 1024 / 1024).toFixed(2)
-// const platform = os.platform()
-// const arch = os.arch()
-// const object = {
-// 	'количество ядер': cpus,
-// 	'свободная память': free__memory,
-// 	'общая память': all__memory,
-// 	'информация о платформе и архитектуре': platform + ' ' + arch,
-// }
-// console.log(object)
-
-// const Emmiter = require('events')
-// const emmiter = new Emmiter()
-
-// const high = () => {
-// 	console.log('Число слишком высокая остановливаем поток')
-// 	clearInterval(timer)
-// }
-
-// emmiter.on('high', high)
-
-// const random__data = () => {
-// 	let random = Math.random().toFixed(1)
-// 	if (random == 0.9) {
-// 		return emmiter.emit('high', high)
+// 	} else {
+// 		console.log('Файл пуст')
+// 		process.exit(0)
 // 	}
-// 	console.log(random)
-// }
-
-// const timer = setInterval(() => {
-// 	emmiter.once('random', random__data)
-// 	emmiter.emit('random', random__data)
-// }, 1000)
-
-// const { Readable } = require('stream')
-// const readable = new Readable({
-// 	read() {},
 // })
-
-// let count = 1
-
-// const time = setInterval(() => {
-// 	readable.push(`Data Chunk #${count++}`)
-// 	if (count > 5) {
-// 		readable.push(null)
-// 		clearInterval(time)
-// 	}
-// }, 1000)
-
-// readable.on('data', chunk => {
-// 	console.log(chunk.toString())
-// })
-
-// readable.on('end', () => {
-// 	console.log('Поток остоновлен')
-// })
-
-// const writableStream = fs.createWriteStream(
-// 	path.resolve(__dirname, 'output.txt')
-// )
-
-// readable.pipe(writableStream)

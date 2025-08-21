@@ -1,18 +1,13 @@
 const path = require('path')
 
 // const fullPath = '/Users/alex/project/src/index.js'
-
 // console.log(path.basename(fullPath)) // 'index.js'
 // console.log(path.dirname(fullPath)) // '/Users/alex/project/src'
 // console.log(path.extname(fullPath)) // '.js'
 // console.log(path.join(__dirname, 'data', '../logs/app.log'))
-// // '/Users/alex/project/logs/app.log'
 // console.log(path.join(__dirname, 'os', '..'))
-// // D:\Backend\Node.js\lessons
-// console.log(path.join(__dirname))
-// // D:\Backend\Node.js\lessons
-// console.log(path.join(__filename))
-// // D:\Backend\Node.js\lessons\path.js
+// console.log(path.join(__dirname)) // D:\Backend\Node.js\lessons
+// console.log(path.join(__filename)) // D:\Backend\Node.js\lessons\path.js
 // console.log(path.resolve('src', './utils')) // Абсолютный путь от cwd
 
 // Задача

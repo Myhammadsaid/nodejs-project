@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
+		"process": "nodemon ./lessons/process.js",
 		"cross": "cross-env PORT=5000 node ./lessons/process.js",
 		"example": "nodemon example.js"
 	},

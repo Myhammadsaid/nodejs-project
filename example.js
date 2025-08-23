@@ -406,3 +406,9 @@ const emitter = new Emitter()
 // 		process.exit(0)
 // 	}
 // })
+
+// console.log('/products/1'.split('/').slice(1))
+// console.log(myURL.searchParams.delete('user'))
+// console.log(myURL.searchParams.delete('age'))
+// console.log(myURL.searchParams.get('user'))
+// console.log(myURL.searchParams.get('title'))

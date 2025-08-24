@@ -20,8 +20,6 @@
 - События, eventEmitter
 - Стримы (Readable, writable streams)
 - Http основы
-- Создание фреймворка по типу express
-- Немного работы с Mondo DB
 
 ---
 
